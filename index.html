@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esame 6 Febbraio - Client Vue - MARGHERITA BONANNO</title>
+
+<!-- Bootstrap -->
+<link href="node_modules/css/bootstrap.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+</head>
+<body >
+<div class="container-fluid" id="app"> 
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="col-sm-6">
+    <h1> Fake Tweets </h1>
+    <p>EXAM VUE CLIENT</p>
+    
+    <!-- PRIMO ESERCZIO-->
+    <h3> ADD A TWEET</h3>
+    
+    <div class="form-group">
+      <!--<label>Id:</label>
+     <p v-if="item.visible">{{item.id}}</p>
+     <br>-->
+      <label>Author:</label>
+      <input type="text" class="form-control" v-model="author" placeholder="author">
+      <label>Message:</label>
+      <input type="text" class="form-control" v-model="message" placeholder="message">
+      
+    </div>
+    <button type="submit" class="btn btn-primary" v-on:click="addTweet">Add Tweet</button>
+     <hr>
+    <hr>
+    <hr>
+     <h4> FILTER BY AUTHOR</h4>
+    <button type="submit" class="btn btn-primary" 
+    v-on:click="readListByAuthor()">Filter by Author</button>
+    
+    <hr width="100%">
+    <h4> <label>Enter ID to FILTER BY ID or to DELETE a Tweet:</label> <h4>
+    <input v-model="id" placeholder="Enter ID" type="text" class="form-control">
+    <hr width="100%">
+    
+    <button type="submit" class="btn btn-primary"  
+    v-on:click="readListById()">
+    Filter by ID</button>
+   
+    <button v-on:click="deleteTweet" type="submit" class="btn btn-primary" >Delete by ID</button>
+    <br>
+      <hr width="100%">
+      <hr width="100%">
+    
+    <br>
+    <button type="submit" class="btn btn-primary" v-on:click="loadTweet()">SHOW TWEET</button>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>AUTHOR</th>
+          <th>MESSAGE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in tweets" v-if="item.visible"><!--v-if="item.visible"-->
+          <td>{{item.id}}</td>
+          <td>{{item.author}}</td>
+          <td>{{item.message}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <!-- SEARCH  WORD  INSIDE AUTHOR OR MESSAGE -->
+    
+    <div class="form-inline my-2 my-lg-0">
+      <label>Search a word inside AUTHOR or MESSAGE:</label>
+      <input v-model="search" class="form-control mr-sm-2" type="search" placeholder="Search a word" aria-label="Search">
+    </div>
+ 
+   <ul class="list-group">
+    <li class="list-group-item" v-for="tweets in filteredList" v-if="!toggle">
+	   <p>{{tweets.id}}</p>
+      <p>{{tweets.author}}</p>
+      <p>{{tweets.message}}</p>
+    </li>   
+  </ul>
+  <button v-on:click="toggle = !toggle" type="button" class="btn btn-success btn-sm">
+  Search Word
+  </button>
+  
+    <!-- //// -->
+    <hr>
+    <hr>
+    <hr>
+     
+    <hr>
+    <hr>
+    <hr>
+    
+  </div>
+  <!-- /<div class="col-sm-6">-->
+  
+  <div class="col-md-6">
+    <div class="row text-center">
+      <div class="col-md-6 col-md-offset-3">
+        <h3> READ TWEET BY AUTHOR AND ID</h3>
+      </div>
+    </div>
+    <hr>
+    <hr>
+    <hr>
+    <div class="row">
+      <div class="text-center col-md-12">
+        <div class="well"><strong>TWEET'S LIST FILTERED</strong></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center"> 
+        
+        <!-- LIST TWEET FILTERED -->
+       
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">FILTERED BY AUTHOR</div>
+            <div class="panel-body" 
+        	v-for="itemList in tweets" 
+  			v-bind:author="itemList.author">
+              <p class="text-primary">{{itemList.id}} </p>
+              <p class="text-primary">{{itemList.author}} </p>
+              <p class="text-primary">{{itemList.message}} </p>
+             
+            </div>
+            <div class="panel-heading">FILTERED BY ID</div>
+            <div class="panel-body" 
+        	v-for="itemList in tweets" 
+  			v-bind:id="itemList.id">
+              <p class="text-primary">{{itemList.id}} </p>
+              <p class="text-primary">{{itemList.author}} </p>
+              <p class="text-primary">{{itemList.message}} </p>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>
+<!-- /.container-fluid --> 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="node_modules/js/jquery-1.11.3.min.js"></script> 
+
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="node_modules/js/bootstrap.js"></script> 
+
+<!--VUE--> 
+<script src="node_modules/vue/dist/vue.js"></script> 
+<script src="node_modules/vue-resource/dist/vue-resource.js"></script> 
+<script src="app.js"></script>
+</body>
+</html>
